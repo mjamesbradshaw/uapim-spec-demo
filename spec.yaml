@@ -2,13 +2,13 @@ openapi: 3.0.0
 info:
   version: 1.0.0
   title: Artists API
-  description: A simple API to illustrate OpenAPI concepts
+  description: A simple Artists API to illustrate OpenAPI concepts
 
 servers:
   - url: https://artists-api-impl.herokuapp.com
 
-security:
-  - BasicAuth: []
+# security:
+  # - BasicAuth: []
 
 paths:
   /artists:
@@ -37,6 +37,13 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Artist"
+            example:
+              {
+                "artist_name": "Snoop Dogg",
+                "artist_genre": "rap",
+                "albums_recorded": 25,
+                "username": "snoopie",
+              }
       responses:
         "200":
           description: Successfully created a new artist
@@ -52,6 +59,7 @@ paths:
           required: true
           schema:
             type: string
+          example: "snoopie"
 
       responses:
         "200":
@@ -60,6 +68,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Artist"
+              example:
+                {
+                  "artist_name": "Snoop Dogg",
+                  "artist_genre": "rap",
+                  "albums_recorded": 25,
+                  "username": "snoopie",
+                }
 
         "400":
           $ref: "#/components/responses/400Error"
@@ -92,6 +107,7 @@ components:
       description: Limits the number of items on a page
       schema:
         type: integer
+      example: 50
 
     PageOffset:
       name: offset
@@ -99,6 +115,7 @@ components:
       description: Specifies the page number of the artists to be displayed
       schema:
         type: integer
+      example: 50
 
   responses:
     400Error:
@@ -110,3 +127,4 @@ components:
             properties:
               message:
                 type: string
+          example: { message: "Invalid request" } 

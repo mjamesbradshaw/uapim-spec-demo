@@ -7,8 +7,8 @@ info:
 servers:
   - url: https://artists-api-impl.herokuapp.com
 
-# security:
-  # - BasicAuth: []
+security:
+ - BasicAuth: []
 
 paths:
   /artists:
@@ -26,6 +26,15 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Artist"
+              example:
+                [
+                  {
+                    "artist_name": "Sample Artist",
+                    "artist_genre": "genre",
+                    "albums_recorded": 0,
+                    "username": "sample",
+                  }
+                ]
         "400":
           $ref: "#/components/responses/400Error"
 
